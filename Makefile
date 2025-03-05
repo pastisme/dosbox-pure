@@ -142,6 +142,10 @@ else ifeq ($(platform),gcw0)
   CPUFLAGS := -ffast-math -march=mips32r2 -mtune=mips32r2 -mhard-float -fexpensive-optimizations -frename-registers
   COMMONFLAGS += -pthread
   STRIPCMD := /opt/gcw0-toolchain/usr/mipsel-gcw0-linux-uclibc/bin/strip --strip-all
+else ifeq ($(platform), emscripten)
+  OUTNAME := dosbox_pure_libretro.bc
+  STATIC_LINKING = 1
+  COMMONFLAGS += -pthread
 else ifneq ($(findstring Haiku,$(shell uname -s)),)
   OUTNAME := dosbox_pure_libretro.so
   LDFLAGS := -Wl,--gc-sections -fno-ident -lroot -lnetwork
